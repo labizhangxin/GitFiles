@@ -1,0 +1,17 @@
+程序运行快捷键：Ctrl+Shfit+F10
+输出快捷键：sout
+main方法快捷键：psvm
+想打开哪个窗口：Alt+数字就行
+删除行：Ctrl+Y
+窗口变大变小：Ctrl+Shfit+F12
+项目结构合成展开：左右箭头
+切换窗口：Alt+左右箭头
+新增/添加/...：Alt+Insert
+看括号里面可以传入什么参数：Ctrl+P
+单行注释：Ctrl+/
+多行注释：Ctrl+Shfit+/
+纠错：ALT+Enter
+搜索类或者其他：两次Shift
+Run Class:两次Ctrl
+查看一个类的属性和方法：Ctrl+F12
+导入类：Alt+Enter 
