@@ -1,0 +1,62 @@
+Git的工作流程一般是酱梓：
+1.在工作目录中添加、修改文件
+2.将需要进行版本管理的文件放入暂存区据
+3.将暂存区域的文件提交到Git仓库
+Git管理的文件有三种状态：
+-已修改(Modified)
+-已暂存(staged)
+-已提交(committed)
+
+reset命令的选项
+1.git reset --mixed HEAD~
+-移动HEAD的指向,将其指向上一个快照
+-将HEAD移动后指向的快照回滚到暂存区域
+2.git reset --soft HEAD~
+-移动HEAD的指向,将其指向上一个快照(版本)
+3.git reset --hard HEAD~
+-移动HEAD的指向,将其指向上一个快照（版本）
+-将HEAD移动后指向的快照回滚到暂存区域
+-将暂存区域的文件还原到工作目录
+注意点:reset只能将指定的文件恢复到暂存区域
+
+Checkout的命令的两种功能
+1.从历史快照(或者从暂存区域)中拷贝文件到工作目录
+2.切换分支
+注意点:checkout是直接覆盖暂存区域和工作目录的
+不加--和加--的区别
+
+git config --global user.name "用户名"
+git config --global user.email "邮箱"
+git config --list(git配置信息)
+git init(生成.git文件夹)
+git add "文件"(提交文件,存在于stage)
+git add *(提交所有)
+git commit -m "注释"(提交文件到仓库)
+git status(查看状态)
+git Checkout|restore -- "文件名"(将上一次暂存的内容还原,还原删除的文件)
+git reset -- "文件名"(将上一次提交的内容还原)
+git log(查看修改记录)
+git reflog(查看命令记录)
+git reset HEAD~(返回上一版本)
+git reset 版本快照 文件名/路径(回滚个别文件)
+git reset 版本快照的ID(不仅可以往回滚，还可以往前滚)
+git diff(比较快照,已提交到仓库的版本 和 尚未提交到仓库的版本之间的 差别)
+git commit --amend(修改最后一次提交)
+git rm "文件名"(删除提交的文件：只是删除工作目录和暂存区域的文件，也就是取消跟踪，在下次提交前不纳入版本管理)
+git rm -f "文件名"(暴力删除)
+git rm --cached "文件名"(删除暂存区域的文件)
+git mv "文件名" "新文件名"(重命名文件)
+git branch "分支名"(创建分支)
+git branch -d "分支名"(删除分支)
+git log --decorate("指向分支的引用")
+git checkout "分支名"("指向这个分支")
+git log --decorate --oneline("一个分支显示一行") --graph(图形化界面显示) --all(显示所有的分支)
+git merge "分支名"(合并分支)
+git commit -m "修复冲突fix conflicts"
+git commit -m "fix conflicts"
+git checkout -b "分支名"("创建并指向这个分支")
+ssh-keygen -t rsa -C "labizhangxin@qq.com"（将本地仓库push到远程仓库）
+
+
+
+
