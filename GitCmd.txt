@@ -58,6 +58,7 @@ git checkout -b "分支名"("创建并指向这个分支")
 ssh-keygen -t rsa -C "labizhangxin@qq.com"（创建ssh）
 git push -u origin master //将主分支本地的内容推送到GitHub上的远程仓库上
 git pull origin master  //进行下拉更新
+test
 
 
 
