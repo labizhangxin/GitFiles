@@ -6,18 +6,54 @@ Git管理的文件有三种状态：
 -已修改(Modified)
 -已暂存(staged)
 -已提交(committed)
+工作目录下面的所有文件都不外乎这两种状态：已跟踪(tracked)或未跟踪(untracked)。
 
 reset命令的选项
 1.git reset --mixed HEAD~
 -移动HEAD的指向,将其指向上一个快照
--将HEAD移动后指向的快照回滚到暂存区域
-2.git reset --soft HEAD~
+-将HEAD移动后指向的快照回滚到暂存区域（--mixed 为默认，可以不用带该参数，用于重置暂存区的文件与上一次的提交(commit)保持一致，工作区文件内容保持不变。）
+
+2.git reset --soft HEAD~（--soft 参数用于回退到某个版本）
 -移动HEAD的指向,将其指向上一个快照(版本)
-3.git reset --hard HEAD~
+$ git reset --soft HEAD~3 # 回退上上上一个版本
+
+3.git reset --hard HEAD~（--hard 参数撤销工作区中所有未提交的修改内容，将暂存区与工作区都回到上一次版本，并删除之前的所有信息提交：）
 -移动HEAD的指向,将其指向上一个快照（版本）
 -将HEAD移动后指向的快照回滚到暂存区域
 -将暂存区域的文件还原到工作目录
 注意点:reset只能将指定的文件恢复到暂存区域
+	$ git reset –hard HEAD~3  # 回退上上上一个版本  
+	$ git reset –hard bae128  # 回退到某个版本回退点之前的所有信息。 
+	$ git reset --hard origin/master    # 将本地的状态回退到和远程的一样 
+
+4. git reset  [HEAD] 
+	$ git reset HEAD^            # 回退所有内容到上一个版本  
+	$ git reset HEAD^ hello.php  # 回退 hello.php 文件的版本到上一个版本  
+	$ git  reset  052e           # 回退到指定版本
+	$ git reset HEAD  hello.php  # 取消暂存区的hello.php
+
+HEAD 说明：
+
+HEAD 表示当前版本
+
+HEAD^ 上一个版本
+
+HEAD^^ 上上一个版本
+
+HEAD^^^ 上上上一个版本
+
+以此类推...
+
+可以使用 ～数字表示
+HEAD~0 表示当前版本
+
+HEAD~1 上一个版本
+
+HEAD^2 上上一个版本
+
+HEAD^3 上上上一个版本
+
+
 
 Checkout的命令的两种功能
 1.从历史快照(或者从暂存区域)中拷贝文件到工作目录
@@ -32,7 +68,9 @@ git init(生成.git文件夹)
 git add "文件"(提交文件,存在于stage)
 git add *(提交所有)
 git commit -m "注释"(提交文件到仓库)
+git commit -am '文件名' （提交已经跟踪过的文件）
 git status(查看状态)
+git status -s(查看状态的简短输出)
 git Checkout|restore -- "文件名"(将上一次暂存的内容还原,还原删除的文件)
 git reset -- "文件名"(将上一次提交的内容还原)
 git log(查看修改记录)
@@ -56,7 +94,15 @@ git commit -m "修复冲突fix conflicts"
 git commit -m "fix conflicts"
 git checkout -b "分支名"("创建并指向这个分支")
 ssh-keygen -t rsa -C "labizhangxin@qq.com"（创建ssh）
-git push -u origin master //将主分支本地的内容推送到GitHub上的远程仓库上
+git remote show origin(查看当前默认push仓库的名字)
+git push --set-upstream 远程仓库地址 分支名称
+git push --set-upstream http://10.144.123.188/liushuai/demo master
+一般只有同时存在多个远程仓库时才会用到--set-upstream。每个git branch可以有个对应的upstream。假设你有两个upstream，分别叫server1和server2，本地master branch的upstream是server1上的master，那么当你不带参数直接输入git pull或者git push时，默认是对server1进行pull/push。如果你成功运行"git push -u server2 master"，那么除了本地branch会被push到server2之外，还会把server2设置成upstream。
+upstream可以认为是默认的server。如果你想把这个新的server设置成upstream才需要-u，如果只是偶尔push到这个新的服务器，那么不需要-u。
+git push -u origin master (将本地的master分支推送到origin主机，同时指定origin为默认主机，后面就可以不加任何参数使用git push了。)
+git push origin master= git push origin master:master
+git push --force origin master(如果本地版本与远程版本有差异，但又要强制推送可以使用 --force 参数)
+git push origin --delete master(表示删除 origin 主机的 master 分支)
 git pull origin master  //进行下拉更新
 
 
